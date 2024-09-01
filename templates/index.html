@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter Picker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #letter {
+            font-size: 48px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="letter"></div>
+    <button onclick="pickLetter()">Pick a Letter</button>
+    <button onclick="resetList()">Reset List</button>
+
+    <script>
+        function pickLetter() {
+            fetch('/pick_letter')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('letter').innerText = data.letter;
+                });
+        }
+
+        function resetList() {
+            fetch('/reset_list')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('letter').innerText = "";
+                });
+        }
+    </script>
+</body>
+</html>
